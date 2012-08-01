@@ -4,8 +4,9 @@
 # The objective is to create a bare bones development box that can be used for development using virtualbox.
 
 
-$current_user=$(whoami)
-sudo su
+#get the user name for which .profile should be modified
+echo -n "Enter username: "
+read current_user
 apt-get update
 # Install misc stuff
 apt-get install xorg --no-install-recommends

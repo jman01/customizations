@@ -7,8 +7,9 @@
 $current_user=$(whoami)
 sudo su
 apt-get update
-apt-get install xorg --no-install-recommends  # Xorg.
-apt-get install vim vim-gtk most --no-install-recommends
+# Install misc stuff
+apt-get install xorg --no-install-recommends
+apt-get install vim vim-gtk most --no-install-recommends 
 
 # No password for sudo
 groupadd -r admin
@@ -17,11 +18,11 @@ sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=admin' /etc/sudoers
 sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 #Set root prompt to Red
-echo "PS1="\[\e[31m\]\h:\w#\[\e[m\] "" >> /root/.bashrci
+echo 'PS1="\[\e[31m\]\h:\w#\[\e[m\] "' >> /root/.bashrc
 
 # Colored Man pages
-echo "export MANPAGER="/usr/bin/most -s"" >> /root/.profile
-echo "export MANPAGER="/usr/bin/most -s"" >> /home/$current_user/.profile
+echo 'export MANPAGER="/usr/bin/most -s"' >> /root/.profile
+echo 'export MANPAGER="/usr/bin/most -s"' >> /home/$current_user/.profile
 
 # Install virtualbox guest addtions
 installVirtualBoxExt(){
@@ -36,7 +37,7 @@ installVirtualBoxExt(){
 	rm VBoxGuestAdditions_$vbox_version.iso
 }
 
-echo -n "Install Virtual box extension ? (Y/N)
+echo -n "Install Virtual box extension ? (Y/N)"
 read choice
 case $choice in
 	[Yy]*) installVirtualBoxExt

@@ -32,7 +32,7 @@ installVirtualBoxExt(){
 	cd /tmp
 	wget http://download.virtualbox.org/virtualbox/$vbox_version/VBoxGuestAdditions_$vbox_version.iso
 	mount -o loop VBoxGuestAdditions_$vbox_version.iso /mnt
-	sh /mnt/VBoxLinuxAdditions
+	sh /mnt/VBoxLinuxAdditions.run
 	umount /mnt
 	rm VBoxGuestAdditions_$vbox_version.iso
 }

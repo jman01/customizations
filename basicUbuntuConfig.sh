@@ -42,8 +42,8 @@ echo -n "Install Virtual box extension ? (Y/N)"
 read choice
 case $choice in
 	[Yy]*) installVirtualBoxExt
-		exit;;
-	*) exit;;
+		break;;
+	*) break;;
 esac
 
 #Install window manager

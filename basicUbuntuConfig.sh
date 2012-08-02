@@ -8,9 +8,7 @@
 echo -n "Enter username: "
 read current_user
 apt-get update
-# Install misc stuff
-apt-get install xorg --no-install-recommends
-apt-get install vim vim-gtk most --no-install-recommends 
+apt-get install vim most --no-install-recommends 
 
 # No password for sudo
 groupadd -r admin
@@ -27,7 +25,7 @@ echo 'export MANPAGER="/usr/bin/most -s"' >> /home/$current_user/.profile
 
 # Install virtualbox guest addtions
 installVirtualBoxExt(){
-	apt-get install gcc make --no-install-recommends
+	apt-get install gcc make xorg vim-gtk --no-install-recommends
 	echo -n "Enter virtual box version number: (Eg. 4.1.16) "
 	read vbox_version
 	cd /tmp
@@ -38,6 +36,7 @@ installVirtualBoxExt(){
 	rm VBoxGuestAdditions_$vbox_version.iso
 }
 
+
 echo -n "Install Virtual box extension ? (Y/N)"
 read choice
 case $choice in
@@ -46,5 +45,21 @@ case $choice in
 	*) break;;
 esac
 
-#Install window manager
-apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev --no-install-recommends
+
+# Install XMonad, xmobar as the status bar and dmenu.
+installXMonad(){
+	apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar dmenu --no-install-recommends
+	mkdir /home/$current_user/.xmonad
+	wget https://raw.github.com/jman01/customizations/master/xmonad.hs
+	mv xmonad.hs /home/$current_user/.xmonad/
+	wget https://raw.github.com/jman01/customizations/master/xmobarrc
+	mv xmobarrc /home/$current_user/.xmobarrc
+}
+
+echo -n "Install XMonad ? (Y/N)"
+read choice
+case $choice in
+	[Yy]*) installXMonad
+		break;;
+	*) break;;
+esac

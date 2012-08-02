@@ -50,10 +50,16 @@ esac
 installXMonad(){
 	apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar dmenu --no-install-recommends
 	mkdir /home/$current_user/.xmonad
+	chown /home/$current_user/.xmonad $current_user
+	chgrp /home/$current_user/.xmonad $current_user
 	wget https://raw.github.com/jman01/customizations/master/xmonad.hs
 	mv xmonad.hs /home/$current_user/.xmonad/
+	chown /home/$current_user/.xmonad/xmonad.hs $current_user
+	chown /home/$current_user/.xmonad/xmonad.hs $current_user
 	wget https://raw.github.com/jman01/customizations/master/xmobarrc
 	mv xmobarrc /home/$current_user/.xmobarrc
+	chown /home/$current_user/.xmobarrc $current_user
+	chown /home/$current_user/.xmobarrc $current_user
 }
 
 echo -n "Install XMonad ? (Y/N)"
@@ -63,3 +69,4 @@ case $choice in
 		break;;
 	*) break;;
 esac
+

@@ -55,11 +55,11 @@ installXMonad(){
 	wget https://raw.github.com/jman01/customizations/master/xmonad.hs
 	mv xmonad.hs /home/$current_user/.xmonad/
 	chown $current_user /home/$current_user/.xmonad/xmonad.hs
-	chown $current_user /home/$current_user/.xmonad/xmonad.hs
+	chgrp $current_user /home/$current_user/.xmonad/xmonad.hs
 	wget https://raw.github.com/jman01/customizations/master/xmobarrc
 	mv xmobarrc /home/$current_user/.xmobarrc
 	chown $current_user /home/$current_user/.xmobarrc
-	chown $current_user /home/$current_user/.xmobarrc
+	chgrp $current_user /home/$current_user/.xmobarrc
 }
 
 echo -n "Install XMonad ? (Y/N)"

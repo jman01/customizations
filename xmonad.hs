@@ -7,20 +7,21 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.ManageDocks
 
-main = xmonad defaults
+main = do
+	statusBarProcPipe <- spawnPipe "/usr/bin/xmobar /home/jdp/.xmobarrc"
+	xmonad $ defaults statusBarProcPipe
 
 
-defaults = defaultConfig {
-	logHook	=	myLogHook,
+defaults logHookParm = defaultConfig {
+	logHook	=	myLogHook logHookParm,
 	manageHook =	myManageHook,
 	layoutHook =	myLayoutHook
 }
 
-myLogHook = do
-	xmproc <- spawnPipe "/usr/bin/xmobar /home/jdp/.xmobarrc"
+myLogHook processPipe  = do
 	dynamicLogWithPP xmobarPP
         	{
-		ppOutput = hPutStrLn xmproc
+		ppOutput = hPutStrLn processPipe
 	        ,ppTitle = xmobarColor "green" "" . shorten 50
        	}
 

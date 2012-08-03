@@ -5,7 +5,7 @@ Config { font = "xft:Bitstream Vera Sans :size=8:style=Oblique:antialias=true"
        , fgColor = "grey"
        , position = Top
        , lowerOnStart = True
-       , commands = [ Run Weather "KHFD" ["-t","<station>: <tempF>F <skyCondition> ","-L","55","-H","85","--normal","green","--high","red","--low","lightblue"] 36000
+       , commands = [ Run Weather "KHFD" ["-t","<station>: <tempF>° F <skyCondition> ","-L","55","-H","85","--normal","green","--high","red","--low","lightblue"] 36000
 		    , Run Network "eth0" ["-t","Network: ▲ <tx> ▼ <rx>","-L","0","-H","32","--normal","green","--high","red","--suffix","Yes"] 10
                     , Run MultiCpu ["-t","CPU <bar> ","-L","3","-H","50","--normal","green","--high","red","--bback","░","--bfore", "▓" ] 10
                     , Run Memory ["-t","RAM: <usedratio>%"] 10
@@ -15,5 +15,5 @@ Config { font = "xft:Bitstream Vera Sans :size=8:style=Oblique:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%multicpu% | %memory% |  %eth0%  } %username%@%host% {<fc=#ee9a00>%date%</fc> %KHFD% "
+       , template = "%multicpu% | %memory% |  %eth0%  } <fc=lightskyblue>%username%@%host%</fc>  {<fc=#ee9a00>%date%</fc> %KHFD% "
        }

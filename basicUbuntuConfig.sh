@@ -48,7 +48,7 @@ esac
 
 # Install XMonad, xmobar as the status bar and dmenu.
 installXMonad(){
-	apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar dmenu --no-install-recommends
+	apt-get install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar curl dmenu --no-install-recommends
 	mkdir /home/$current_user/.xmonad
 	chown $current_user /home/$current_user/.xmonad
 	chgrp $current_user /home/$current_user/.xmonad

@@ -1,4 +1,4 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+Config { font = "xft:Bitstream Vera Sans :size=8:style=Oblique:antialias=true"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
@@ -6,12 +6,14 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , position = Top
        , lowerOnStart = True
        , commands = [ Run Weather "KHFD" ["-t","<station>: <tempF>F <skyCondition> ","-L","55","-H","85","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run MultiCpu ["-t","Cpu(%): <autototal> ","-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+		    , Run Network "eth0" ["-t","Network: ▲ <tx> ▼ <rx>","-L","0","-H","32","--normal","green","--high","red","--suffix","Yes"] 10
+                    , Run MultiCpu ["-t","CPU <bar> ","-L","3","-H","50","--normal","green","--high","red","--bback","░","--bfore", "▓" ] 10
+                    , Run Memory ["-t","RAM: <usedratio>%"] 10
     		    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+		    , Run Com "whoami" [] "username" 0
+		    , Run Com "hostname" [] "host" 0
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%multicpu% | %memory% | %eth0% | }{ <fc=#ee9a00>%date%</fc>| %KHFD% " 
+       , template = "%multicpu% | %memory% |  %eth0%  } %username%@%host% {<fc=#ee9a00>%date%</fc> %KHFD% "
        }
